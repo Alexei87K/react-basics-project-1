@@ -2,15 +2,15 @@
     font-family: Poppins;
     font-weight: 400;
     font-size: 16px;
-    color:#8E95A9;
+    color:#fff;
 }
 
 .szSmall{
-    font-size:10px;
+    font-size:16px;
 }
 .szMedium{
-    font-size:20px;
+    font-size:24px;
 }
 .szBig{
-    font-size:30px;
+    font-size:32px;
 }

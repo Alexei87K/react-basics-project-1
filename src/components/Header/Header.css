@@ -1,0 +1,39 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:16px 120px;
+    background: #121829CC;
+}
+
+ul{
+    display:flex;
+    list-style-type: none !important;
+}
+ul li {
+    padding:0 25px;
+   
+}
+ul li.liBlock2{
+    padding-right: 0;
+}
+
+ul li.liBlock, ul li.liBlock2{
+    display:flex;
+    
+}
+ul li.liBlock a, ul li.liBlock2 a{
+   padding-right:5px;
+}
+ul li span{
+    padding:3px 10px;
+    border-radius:50%;
+    color:#fff;
+    background:#7B6EF6;
+}
+ul li a{
+    color:#fff;
+}
+
+
+

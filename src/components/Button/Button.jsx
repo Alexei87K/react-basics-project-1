@@ -1,12 +1,14 @@
 
 import './Button.css'
 
-function ButtonComponent() {
+function ButtonComponent({name}) {
+
+  const btn = 'button' + (name == 'Искать' ? '' : (name == 'Войти в профиль' ? ' ' + 'login' : '') )
   
 
   return (
     
-      <div className='button'>Искать</div>
+      <button className={btn}>{name}</button>
     
   )
 }

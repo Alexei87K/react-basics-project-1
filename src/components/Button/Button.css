@@ -4,8 +4,8 @@
     margin-top:25px;
 }
 
-.container .button{
-    width:119px;
+.ButtonContainer .button{
+    /* width:119px; */
     
     /* height: 56px; */
     padding: 16px 32px 16px 32px;
@@ -13,4 +13,11 @@
     border:2px;
     color:#fff;
     border-radius:12px;
+    margin-left:8px;
+}
+
+.login{
+    color:#fff;
+    background: green !important;
+    
 }

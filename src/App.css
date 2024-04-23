@@ -50,7 +50,7 @@
 
 .flex-box{
   display:flex;
-  width:1290px;
+  max-width:1440px;
   padding:0 120px;
   
 }
@@ -59,4 +59,8 @@
 }
 .el-flex-s{
   width:28%;
+}
+
+*{
+  box-sizing: border-box;
 }

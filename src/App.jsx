@@ -4,6 +4,9 @@ import ButtonComponent from "./components/Button/Button";
 import AboutComponent from "./components/About/About";
 import HeaderComponent from "./components/Header/Header";
 import InputComponent from "./components/Input/Input";
+import FilmListComponent from "./components/FilmList/FilmList";
+import FilmItemComponent from "./components/FilmItem/FilmItem";
+
 
 function App() {
     const sizeClass = [
@@ -18,6 +21,49 @@ function App() {
       {
         login: 'Войти в профиль',
         search: 'Искать'
+      }
+    ]
+
+    const films = [
+      {
+        title: 'Black Widow',
+        poster: '/img/poster1.png',
+        rating: 324
+      },
+      {
+        title: 'Friends',
+        poster: '/img/poster2.png',
+        rating: 123
+      },
+      {
+        title: 'Loki',
+        poster: '/img/poster3.png',
+        rating: 235
+      },
+      {
+        title: 'How I Met Your Mother',
+        poster: '/img/poster4.png',
+        rating: 123
+      },
+      {
+        title: 'Money Heist',
+        poster: '/img/poster5.png',
+        rating: 8125
+      },
+      {
+        title: 'Friends',
+        poster: '/img/poster6.png',
+        rating: 123
+      },
+      {
+        title: 'The Big Bang Theory',
+        poster: '/img/poster7.png',
+        rating: 12
+      },
+      {
+        title: 'Two And a Half Men',
+        poster: '/img/poster7.png',
+        rating: 456
       }
     ]
 
@@ -42,6 +88,16 @@ function App() {
       </div>
 
       
+      <FilmListComponent>
+        {films.map(el => (
+          <FilmItemComponent 
+            title={el.title}
+            poster={el.poster}
+            rating={el.rating}
+
+           />
+        ))}
+      </FilmListComponent>
       
     </div>
     

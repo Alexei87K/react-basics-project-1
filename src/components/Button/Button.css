@@ -1,0 +1,23 @@
+.container{
+    width:200px;
+    margin:0 auto;
+    margin-top:25px;
+}
+
+.ButtonContainer .button{
+    /* width:119px; */
+    
+    /* height: 56px; */
+    padding: 16px 32px 16px 32px;
+    background: #7B6EF6;
+    border:2px;
+    color:#fff;
+    border-radius:12px;
+    margin-left:8px;
+}
+
+.login{
+    color:#fff;
+    background: green !important;
+    
+}

@@ -1,0 +1,51 @@
+.filmItem{
+   padding:8px 8px 20px 8px;
+   background: #20283ECC;
+   /* width:calc(100 / 5); */
+   /* width:25%; */
+   border-radius:10px;
+   margin:0 10px;
+   /* flex-basis: 282px; */
+   flex: 0 1 250px; /* Элемент не растягивается, может сжиматься, базовый размер автоматический */
+    /* Ширина */
+    margin-bottom:20px;
+}
+.rel-block{
+    position:relative;
+}
+.rel-block img{
+  max-width:250px;
+}
+.abs-block{
+    position:absolute;
+    top:5px;
+    left:5px;
+    display:flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius:10px;
+    padding:3px 8px;
+}
+.abs-block span{
+   padding-left:5px;
+   color:rgba(255, 173, 73, 1);
+}
+.poster-title{
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    color:#fff;
+}
+.flexBlock{
+  display:flex;
+  align-items: center;
+  margin-top:5px;
+}
+.flexBlock img{
+    width: 18px;
+    height: 18px;
+}
+.flexBlock span{
+  padding-left:7px;
+  color:#7B6EF6;
+}

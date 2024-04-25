@@ -1,0 +1,16 @@
+.paragraph{
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    color:#fff;
+}
+
+.szSmall{
+    font-size:16px;
+}
+.szMedium{
+    font-size:24px;
+}
+.szBig{
+    font-size:32px;
+}

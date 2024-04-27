@@ -1,9 +1,9 @@
 
-import './Button.css'
+import styles from './Button.module.css'
 
 function ButtonComponent({name}) {
 
-  const btn = 'button' + (name == 'Искать' ? '' : (name == 'Войти в профиль' ? ' ' + 'login' : '') )
+  const btn = (name == 'Искать' ? `${styles['button']}` : (name == 'Войти в профиль' ? `${styles['button']}` + ' ' +  `${styles['login']}` : (name == 'в избранное' ? ' ' +  `${styles['like-btn']}` : '')) )
   
 
   return (

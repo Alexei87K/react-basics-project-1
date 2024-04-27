@@ -20,7 +20,9 @@ function App() {
     const viewButton = [
       {
         login: 'Войти в профиль',
-        search: 'Искать'
+        search: 'Искать',
+        
+
       }
     ]
 
@@ -28,42 +30,50 @@ function App() {
       {
         title: 'Black Widow',
         poster: '/img/poster1.png',
-        rating: 324
+        rating: 324,
+        favorites: 'в избранное'
       },
       {
         title: 'Friends',
         poster: '/img/poster2.png',
-        rating: 123
+        rating: 123,
+        favorites: 'в избранное'
       },
       {
         title: 'Loki',
         poster: '/img/poster3.png',
-        rating: 235
+        rating: 235,
+        favorites: 'в избранное'
       },
       {
         title: 'How I Met Your Mother',
         poster: '/img/poster4.png',
-        rating: 123
+        rating: 123,
+        favorites: 'в избранное'
       },
       {
         title: 'Money Heist',
         poster: '/img/poster5.png',
-        rating: 8125
+        rating: 8125,
+        favorites: 'в избранное'
       },
       {
         title: 'Friends',
         poster: '/img/poster6.png',
-        rating: 123
+        rating: 123,
+        favorites: 'в избранное'
       },
       {
         title: 'The Big Bang Theory',
         poster: '/img/poster7.png',
-        rating: 12
+        rating: 12,
+        favorites: 'в избранное'
       },
       {
         title: 'Two And a Half Men',
         poster: '/img/poster7.png',
-        rating: 456
+        rating: 456,
+        favorites: 'в избранное'
       }
     ]
 
@@ -79,7 +89,7 @@ function App() {
           <AboutComponent name={sizeClass[0].big} />
       
           <form action="" className="ButtonContainer">
-            <InputComponent  />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}
+            <InputComponent   />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}
             <ButtonComponent name={viewButton[0].search} />
           </form>
 
@@ -94,6 +104,7 @@ function App() {
             title={el.title}
             poster={el.poster}
             rating={el.rating}
+            favorites={el.favorites}
 
            />
         ))}

@@ -1,12 +1,12 @@
 
-import './FilmList.css'
+import styles from './FilmList.module.css'
 
 function FilmListComponent({ children }) {
   
 
   return (
     
-    <div className="filmList">
+    <div className={styles['filmList']}>
         {children}
     </div>
     

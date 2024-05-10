@@ -1,24 +1,36 @@
 
 import styles from './Header.module.css'
+import { INITIAL_STATE, changeUserState } from '../../reducer_user_state';
+import { useRef, useEffect, useReducer, useState, } from 'react';
 
-function HeaderComponent() {
-  
+function HeaderComponent({open, userdate}) {
+  const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
+  const { isValid } = userState;
 
+ 
+  const onClick = (e) => {
+    e.preventDefault();
+    
+    dispatchUserState({type: 'AUTH_OUT'});
+  }
+  let isAuth = open;
+  console.log('isAuth ' + isAuth);
+  console.log('Header ' + userdate);
   return (
     
       <div className={styles['header']}>
         <div>
           <img src="/logo.svg" alt="" />
         </div>
-       <div>
+       <div className={styles['forFlexHeader']}>
           <ul>
             <li><a href="#">Поиск фильмов</a></li>
             <li className={styles['liBlock']}><a href="#">Мои фильмы</a><span>2</span></li>
-            <li className={styles['liBlock2']}><a href="#">Войти</a><img src="/login.svg" alt="" /></li>
-          </ul>
-
-         
-            
+            {/* <li className={styles['liBlock2']}><a href="#">Войти</a><img src="/login.svg" alt="" /></li> */}
+          </ul>    
+          <div className={styles['forFlexHeader']}>
+            {isAuth ? (<><div className={styles['forFlexHeaderPaddingR']} >{userdate}</div><div onClick={onClick}>Выйти</div></>) : (<div>Войти</div>)}
+          </div>
        </div>
       </div>
     

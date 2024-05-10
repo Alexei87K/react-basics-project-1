@@ -64,3 +64,10 @@
 *{
   box-sizing: border-box;
 }
+
+
+
+
+.displ-none{
+  display:none;
+}

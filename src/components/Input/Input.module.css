@@ -58,6 +58,10 @@
   padding-left: 55px !important;
 }
 
+.invalid{
+  border:1px solid red !important;
+}
+
 /*  END  СТИЛИ МЕНЯЮЩИЕ ТИП КНОПКИ (С И БЕЗ ИКОНКИ) */
 
 

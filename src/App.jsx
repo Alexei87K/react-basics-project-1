@@ -6,9 +6,36 @@ import HeaderComponent from "./components/Header/Header";
 import InputComponent from "./components/Input/Input";
 import FilmListComponent from "./components/FilmList/FilmList";
 import FilmItemComponent from "./components/FilmItem/FilmItem";
+import { INITIAL_STATE, changeUserState } from './reducer_user_state';
+import { useEffect, useReducer, useState} from 'react';
+
 
 
 function App() {
+  
+  const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
+  const { isUserReadyToSet, values, isValid } = userState;
+  
+
+  console.log('isUserReadyToSet ' + isUserReadyToSet);
+  console.log('values ' + values.user);
+  console.log('isValid ' + isValid);
+  
+  let [userFromLocalS, setUserFromLocalS] = useState([]);
+  
+
+  useEffect(() => {
+    if(isUserReadyToSet){
+      localStorage.setItem('data', JSON.stringify(values.user));
+    }   
+  }, [values.user]);
+
+  useEffect(() => {
+    userFromLocalS = JSON.parse(localStorage.getItem('data'));
+    setUserFromLocalS(userFromLocalS);
+    console.log('Получаем ' + userFromLocalS);
+  }, [isValid])
+
     const sizeClass = [
       {
         small: 'szSmall',
@@ -23,6 +50,13 @@ function App() {
         search: 'Искать',
         
 
+      }
+    ]
+
+    const placeholder = [
+      {
+        searchInput: 'Искать',
+        accountInput: 'Войти в аккаунт'
       }
     ]
 
@@ -77,10 +111,30 @@ function App() {
       }
     ]
 
+ 
+
+  const onChange = (e) => {
+    
+    dispatchUserState({type: 'SET_VALUE', payload:{[e.target.name]: e.target.value }})
+   
+  }
+  const onClick = (e) => {
+    e.preventDefault();
+    dispatchUserState({type: 'SET_USER'});
+  }
+  
   return (
     
     <div>
-      <HeaderComponent />
+      <HeaderComponent open={isValid} userdate={userFromLocalS} />
+
+    
+      <div className={isValid ? "displ-none" : null}>
+        <div>Вход</div>
+        <InputComponent className="no-icon"  name="user" onChange={onChange} value={values.user}
+                        inValidUser={isUserReadyToSet}  placeholder={placeholder[0].accountInput} /> 
+        <ButtonComponent name={viewButton[0].login} onClick={onClick} />
+      </div>
 
       <div className="flex-box">
         <div className="el-flex-f">
@@ -89,7 +143,8 @@ function App() {
           <AboutComponent name={sizeClass[0].big} />
       
           <form action="" className="ButtonContainer">
-            <InputComponent   />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}
+           
+            <InputComponent className="no-icon" placeholder={placeholder[0].searchInput} name="myinput" />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}    
             <ButtonComponent name={viewButton[0].search} />
           </form>
 

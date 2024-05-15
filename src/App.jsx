@@ -8,144 +8,71 @@ import FilmListComponent from "./components/FilmList/FilmList";
 import FilmItemComponent from "./components/FilmItem/FilmItem";
 import { INITIAL_STATE, changeUserState } from './reducer_user_state';
 import { useEffect, useReducer, useState} from 'react';
+import films from './films';
 
 
 
 function App() {
   
   const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
-  const { isUserReadyToSet, values, isValid } = userState;
+  const { user, isAuth } = userState;
+  const [userInput, setInputUser] = useState('');
   
-
-  console.log('isUserReadyToSet ' + isUserReadyToSet);
-  console.log('values ' + values.user);
-  console.log('isValid ' + isValid);
   
-  let [userFromLocalS, setUserFromLocalS] = useState([]);
-  
+  let [userFromLocalS, setUserFromLocalS] = useState([]); 
 
   useEffect(() => {
-    if(isUserReadyToSet){
-      localStorage.setItem('data', JSON.stringify(values.user));
+    if(!isAuth){
+      localStorage.setItem('data', JSON.stringify(user));
     }   
-  }, [values.user]);
+  }, [isAuth]);
 
   useEffect(() => {
     userFromLocalS = JSON.parse(localStorage.getItem('data'));
     setUserFromLocalS(userFromLocalS);
-    console.log('Получаем ' + userFromLocalS);
-  }, [isValid])
+    
+  }, [isAuth])
 
-    const sizeClass = [
-      {
-        small: 'szSmall',
-        medium: 'szMedium',
-        big: 'szBig'
-      }
-    ]
-
-    const viewButton = [
-      {
-        login: 'Войти в профиль',
-        search: 'Искать',
-        
-
-      }
-    ]
-
-    const placeholder = [
-      {
-        searchInput: 'Искать',
-        accountInput: 'Войти в аккаунт'
-      }
-    ]
-
-    const films = [
-      {
-        title: 'Black Widow',
-        poster: '/img/poster1.png',
-        rating: 324,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Friends',
-        poster: '/img/poster2.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Loki',
-        poster: '/img/poster3.png',
-        rating: 235,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'How I Met Your Mother',
-        poster: '/img/poster4.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Money Heist',
-        poster: '/img/poster5.png',
-        rating: 8125,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Friends',
-        poster: '/img/poster6.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'The Big Bang Theory',
-        poster: '/img/poster7.png',
-        rating: 12,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Two And a Half Men',
-        poster: '/img/poster7.png',
-        rating: 456,
-        favorites: 'в избранное'
-      }
-    ]
-
- 
+  console.log('userFromLocalS ' +  userFromLocalS);
 
   const onChange = (e) => {
-    
-    dispatchUserState({type: 'SET_VALUE', payload:{[e.target.name]: e.target.value }})
-   
+    setInputUser(e.target.value)
   }
-  const onClick = (e) => {
-    e.preventDefault();
-    dispatchUserState({type: 'SET_USER'});
+  const onClick = (e) => {  
+    if (!userInput.length) {
+      console.log('Error');
+    return;
+    }else{
+       e.preventDefault();  
+        dispatchUserState({type: 'LOGIN', payload: userInput});
+    }
+         
   }
+
+
+ 
   
   return (
     
     <div>
-      <HeaderComponent open={isValid} userdate={userFromLocalS} />
+      <HeaderComponent name={userFromLocalS} isAuth={isAuth} />
 
-    
-      <div className={isValid ? "displ-none" : null}>
+      <div className={!isAuth ? "displ-none" : null}>
         <div>Вход</div>
-        <InputComponent className="no-icon"  name="user" onChange={onChange} value={values.user}
-                        inValidUser={isUserReadyToSet}  placeholder={placeholder[0].accountInput} /> 
-        <ButtonComponent name={viewButton[0].login} onClick={onClick} />
+        <InputComponent className="no-icon" valid={userFromLocalS}   onChange={onChange} value={userInput}
+                         placeholder="Искать" /> 
+        <ButtonComponent name='Войти в профиль' onClick={onClick} />
       </div>
 
       <div className="flex-box">
         <div className="el-flex-f">
 
           <TitleComponent />
-          <AboutComponent name={sizeClass[0].big} />
+          <AboutComponent name='szBig' />
       
           <form action="" className="ButtonContainer">
-           
-            <InputComponent className="no-icon" placeholder={placeholder[0].searchInput} name="myinput" />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}    
-            <ButtonComponent name={viewButton[0].search} />
+            <InputComponent className="no-icon"  placeholder="Искать" name="myinput" onChange={onChange}  />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}    
+            <ButtonComponent name='Искать' />
           </form>
 
         </div>

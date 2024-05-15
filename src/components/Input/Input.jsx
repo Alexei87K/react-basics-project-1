@@ -4,45 +4,45 @@ import classNames from 'classnames/bind';
 import { INITIAL_STATE, changeUserState } from '../../reducer_user_state';
 import { useRef, useEffect, useReducer, useState, } from 'react';
 
-
+  
 
 const cx = classNames.bind(styles);
 
-function InputComponent({className, placeholder, name, onChange, inValidUser = true}) {
+function InputComponent({className, name, valid = '', placeholder, onChange, value}) {
   const userRef = useRef();
   const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
-  const { isUserReadyToSet, values, isValid } = userState;
+  const { user, isAuth } = userState;
+  console.log('input user ' + user);
+  console.log('input isAuth ' + isAuth);
 
-  const focusError = (values) => {
-    switch(true){
-     case (values.user.length === 0):
-          console.log('Мы в функции focusError. Да, длина 0');
-          userRef.current.focus();
-          break;
-    }
- }
+//   const focusError = (valid) => {
+//     switch(true){
+//      case (valid.length === 0):
+//           userRef.current.focus();
+//           break;
+//     }
+//  }
 
- useEffect(() => {
-  console.log('Внутри useEffect');
-   let timerId;
-   focusError(values);
-   timerId = setTimeout(() => {
+//  useEffect(() => {
+
+//    let timerId;
+//    focusError(valid);
+//    timerId = setTimeout(() => {
     
-     console.log('Внутри setTimeout');
-     dispatchUserState({type: 'RESET'})
-   }, 2000)
-   return () => {
-    clearTimeout(timerId);
-  };
- }, [inValidUser])
+     
+//     //  dispatchUserState({type: 'RESET'})
+//    }, 2000)
+//    return () => {
+//     clearTimeout(timerId);
+//   };
+//  }, [])
 
-console.log('isUserReadyToSet in input component ' + inValidUser);
+
 
 
   const inputClassName = cx(styles['form-style'],{
     [styles['plusPadding']] : !styles[className],
-
-    [styles['invalid']] : !inValidUser
+    // [styles['invalid']] : !isAuth
     
   });
   // debugger;
@@ -57,7 +57,7 @@ console.log('isUserReadyToSet in input component ' + inValidUser);
     
     
       <div className={styles['form-group']}>
-        <input type="email" ref={userRef} name={name} className={inputClassName} onChange={onChange} placeholder={placeholder} id="logemail" autoComplete="off" />
+        <input type="email" value={value} ref={userRef} name={name} className={inputClassName} onChange={onChange} placeholder={placeholder} id="logemail" autoComplete="off" />
         <img className={imgClassName} src="/search.svg" alt="" />
       </div>
   

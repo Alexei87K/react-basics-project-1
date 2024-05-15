@@ -1,38 +1,41 @@
 export const INITIAL_STATE = {
-    isValid: false,
-        
-    
-    values: {
-        user: ''
-    },
-    isUserReadyToSet: true,
-    
+    isAuth: true,
+    user: '',
 }
 
 
 export function changeUserState(state, action){
     switch(action.type){
-        case 'AUTH_OUT':
-            return {...state, isValid: false  }
-      case 'SET_VALUE' :
-        return {...state, values:{...state.values, ...action.payload}   }
-      case 'RESET' :
-        return {...state, isUserReadyToSet: true   }
-      case 'SET_USER' :
-        const userValidity = state.values.user.trim().length;
-        const userValue = state.values.user;
+       case 'LOGIN':
+        return {...state, isAuth: false, user: action.payload }
+       case 'LOGOUT':
+        return {...state, isAuth: true, user: ''}
 
-        // console.log('количество ' + userValidity);
-      
-        return {...state, 
-            isValid: userValidity ? true : false,
-            values:{
-                user:  userValue
-            },
-            
-            isUserReadyToSet: Boolean(userValidity),
-           
-        }
-        
+    
     }
 }
+
+
+
+//   case 'AUTH_OUT':
+    //         return {...state, isValid: false  }
+    //   case 'SET_VALUE' :
+    //     return {...state, values:{...state.values, ...action.payload}   }
+    //   case 'RESET' :
+    //     return {...state, isUserReadyToSet: true   }
+    //   case 'SET_USER' :
+    //     const userValidity = state.values.user.trim().length;
+    //     const userValue = state.values.user;
+
+    //     // console.log('количество ' + userValidity);
+      
+    //     return {...state, 
+    //         isValid: userValidity ? true : false,
+    //         values:{
+    //             user:  userValue
+    //         },
+            
+    //         isUserReadyToSet: Boolean(userValidity),
+           
+    //     }
+        

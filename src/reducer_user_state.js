@@ -1,6 +1,6 @@
 export const INITIAL_STATE = {
     isAuth: true,
-    user: '',
+    user: '111',
 }
 
 
@@ -9,7 +9,10 @@ export function changeUserState(state, action){
        case 'LOGIN':
         return {...state, isAuth: false, user: action.payload }
        case 'LOGOUT':
-        return {...state, isAuth: true, user: ''}
+        return {...state, isAuth: true, user: '' }
+       case 'LOCALSTORAGE':
+        return {...state, user: action.payload.user, isAuth: action.payload.isAuth
+    }
 
     
     }

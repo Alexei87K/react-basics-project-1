@@ -20,20 +20,29 @@ function App() {
   
   
   let [userFromLocalS, setUserFromLocalS] = useState([]); 
-
+  const data = {
+    user: user,
+    isAuth: isAuth
+  };
   useEffect(() => {
     if(!isAuth){
-      localStorage.setItem('data', JSON.stringify(user));
+     
+      localStorage.setItem('data', JSON.stringify(data));
+      // localStorage.setItem('data', JSON.stringify(user));
     }   
   }, [isAuth]);
 
   useEffect(() => {
     userFromLocalS = JSON.parse(localStorage.getItem('data'));
     setUserFromLocalS(userFromLocalS);
-    
-  }, [isAuth])
+  }, [])
 
-  console.log('userFromLocalS ' +  userFromLocalS);
+  useEffect(() => {
+    const firstRender = JSON.parse(localStorage.getItem('data'));
+    if(firstRender){
+      dispatchUserState({type: 'LOCALSTORAGE', payload:{user: firstRender.user, isAuth: firstRender.isAuth }});
+    }
+  }, [])
 
   const onChange = (e) => {
     setInputUser(e.target.value)
@@ -49,17 +58,17 @@ function App() {
          
   }
 
-
+ 
  
   
   return (
     
     <div>
-      <HeaderComponent name={userFromLocalS} isAuth={isAuth} />
+      <HeaderComponent name={user} isAuth={isAuth}  />
 
       <div className={!isAuth ? "displ-none" : null}>
         <div>Вход</div>
-        <InputComponent className="no-icon" valid={userFromLocalS}   onChange={onChange} value={userInput}
+        <InputComponent className="no-icon" onChange={onChange} value={userInput}
                          placeholder="Искать" /> 
         <ButtonComponent name='Войти в профиль' onClick={onClick} />
       </div>

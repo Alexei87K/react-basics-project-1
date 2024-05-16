@@ -6,7 +6,8 @@ import { useRef, useEffect, useReducer, useState, } from 'react';
 function HeaderComponent({name, isAuth}) {
   const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
   
-
+  console.log('Header.jsx user ' + name);
+  console.log('Header.jsx isAuth ' + isAuth);
   const onClickHeader = (e) => {
     console.log('onClickHeader');
     e.preventDefault();

@@ -8,12 +8,12 @@ import { useRef, useEffect, useReducer, useState, } from 'react';
 
 const cx = classNames.bind(styles);
 
-function InputComponent({className, name, valid = '', placeholder, onChange, value}) {
+function InputComponent({className, name, placeholder, onChange, value}) {
   const userRef = useRef();
   const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
   const { user, isAuth } = userState;
-  console.log('input user ' + user);
-  console.log('input isAuth ' + isAuth);
+  // console.log('input user ' + user);
+  // console.log('input isAuth ' + isAuth);
 
 //   const focusError = (valid) => {
 //     switch(true){

@@ -1,20 +1,12 @@
 
 import styles from './Header.module.css'
-import { INITIAL_STATE, changeUserState } from '../../reducer_user_state';
-import { useRef, useEffect, useReducer, useState, } from 'react';
 
-function HeaderComponent({name, isAuth}) {
-  const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
+
+function HeaderComponent({name, isAuth, onLogout}) {
   
   console.log('Header.jsx user ' + name);
   console.log('Header.jsx isAuth ' + isAuth);
-  const onClickHeader = (e) => {
-    console.log('onClickHeader');
-    e.preventDefault();
-    localStorage.clear();
-    dispatchUserState({type: 'LOGOUT'});
-    
-  }
+  
 
   return (
     
@@ -29,7 +21,7 @@ function HeaderComponent({name, isAuth}) {
             {/* <li className={styles['liBlock2']}><a href="#">Войти</a><img src="/login.svg" alt="" /></li> */}
           </ul>    
           <div className={styles['forFlexHeader']}>
-            {!isAuth ? (<><div className={styles['forFlexHeaderPaddingR']} >{name}</div><div onClick={onClickHeader}>Выйти</div></>) : (<div>Войти</div>)}
+            {!isAuth ? (<><div className={styles['forFlexHeaderImg']}><div>{name}</div><img src="/account.svg" alt="" /></div><div className={styles['forFlexHeaderPaddingL']} onClick={onLogout}>Выйти</div></>) : (<div>Войти</div>)}
           </div>
        </div>
       </div>

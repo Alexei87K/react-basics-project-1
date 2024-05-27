@@ -42,6 +42,10 @@ ul li a{
     align-items:baseline;
     color:#fff;
 }
-.forFlexHeaderPaddingR{
-    padding-right: 55px;
+.forFlexHeaderImg{
+    display:flex;
+    line-height: 1.3;
+}
+.forFlexHeaderPaddingL{
+    padding-left: 55px;
 }

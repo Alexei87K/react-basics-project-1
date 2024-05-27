@@ -1,19 +1,16 @@
 
 import styles from  './Input.module.css';
 import classNames from 'classnames/bind';
-import { INITIAL_STATE, changeUserState } from '../../reducer_user_state';
-import { useRef, useEffect, useReducer, useState, } from 'react';
+
+import { forwardRef } from 'react';
 
   
 
 const cx = classNames.bind(styles);
 
-function InputComponent({className, name, placeholder, onChange, value}) {
-  const userRef = useRef();
-  const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
-  const { user, isAuth } = userState;
-  // console.log('input user ' + user);
-  // console.log('input isAuth ' + isAuth);
+const InputComponent = forwardRef(function InputComponent({className, name, placeholder, onChange, value, ...props}, ref) {
+ 
+  
 
 //   const focusError = (valid) => {
 //     switch(true){
@@ -57,12 +54,12 @@ function InputComponent({className, name, placeholder, onChange, value}) {
     
     
       <div className={styles['form-group']}>
-        <input type="email" value={value} ref={userRef} name={name} className={inputClassName} onChange={onChange} placeholder={placeholder} id="logemail" autoComplete="off" />
+        <input type="email" value={value} ref={ref} name={name} className={inputClassName} onChange={onChange} placeholder={placeholder} id="logemail" autoComplete="off" {...props} />
         <img className={imgClassName} src="/search.svg" alt="" />
       </div>
   
     
   )
-}
+})
 
 export default InputComponent

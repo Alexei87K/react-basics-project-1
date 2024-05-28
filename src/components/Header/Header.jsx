@@ -1,11 +1,14 @@
 
 import styles from './Header.module.css'
+import { UserContext } from '../../Context/user.contex';
+import { useContext } from "react";
 
 
-function HeaderComponent({name, isAuth, onLogout}) {
-  
-  console.log('Header.jsx user ' + name);
-  console.log('Header.jsx isAuth ' + isAuth);
+
+function HeaderComponent({ onLogout }) {
+  const { userState, dispatchUserState } = useContext(UserContext);
+  console.log('Header.jsx user ' + userState.user);
+  console.log('Header.jsx isAuth ' + userState.isAuth);
   
 
   return (
@@ -21,7 +24,7 @@ function HeaderComponent({name, isAuth, onLogout}) {
             {/* <li className={styles['liBlock2']}><a href="#">Войти</a><img src="/login.svg" alt="" /></li> */}
           </ul>    
           <div className={styles['forFlexHeader']}>
-            {!isAuth ? (<><div className={styles['forFlexHeaderImg']}><div>{name}</div><img src="/account.svg" alt="" /></div><div className={styles['forFlexHeaderPaddingL']} onClick={onLogout}>Выйти</div></>) : (<div>Войти</div>)}
+            {userState.isAuth ? (<><div className={styles['forFlexHeaderImg']}><div>{userState.user}</div><img src="/account.svg" alt="" /></div><div className={styles['forFlexHeaderPaddingL']} onClick={onLogout}>Выйти</div></>) : (<div>Войти</div>)}
           </div>
        </div>
       </div>

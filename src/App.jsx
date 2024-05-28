@@ -9,14 +9,20 @@ import FilmItemComponent from "./components/FilmItem/FilmItem";
 import { INITIAL_STATE, changeUserState } from './reducer_user_state';
 import { useEffect, useReducer, useState, useRef} from 'react';
 import films from './films';
+import { UserContext } from './Context/user.contex';
+import { useContext } from "react";
 
 
 
 function App() {
   
   const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
+  // const { user, isAuth } = useContext(UserContext);
   const { user, isAuth } = userState;
   const [userInput, setInputUser] = useState('');
+  console.log('App.jsx user ' + user);
+  console.log('App.jsx isAuth ' + isAuth);
+  console.log('userInput ' + userInput);
 
   const userRef = useRef();
 
@@ -39,8 +45,8 @@ function App() {
        e.preventDefault();  
        dispatchUserState({type: 'LOGIN', payload: userInput});
        localStorage.setItem('data', JSON.stringify(userInput));
-       userRef.current.focus();
-       console.log(userRef.current.value);
+       inputRef.current.value = ''; // ПОЛЕ НЕ ОТЧИЩАЕТСЯ. КАК ЭТО СДЕЛТЬ?
+      //  console.log(userRef.current.value);
       
     }    
   }
@@ -49,23 +55,18 @@ function App() {
     e.preventDefault();
     console.log('onLogout');
     localStorage.clear();
-    userRef.current.focus();
-    dispatchUserState({type: 'LOGOUT', payload: {isAuth: true, user: ''}});
-    
-    
+    dispatchUserState({type: 'LOGOUT', payload: {isAuth: false, user: ''}});  
   }
-
-  
-
- 
- console.log('Сначала здесь!');
   
   return (
     
     <div>
-      <HeaderComponent name={user} isAuth={isAuth} onLogout={onLogout}  />
+      <UserContext.Provider value={{userState, dispatchUserState}}>
+        <HeaderComponent  onLogout={onLogout}  />
+      </ UserContext.Provider>
        <div className="wrapper-block">
-          <div className={!isAuth ? "displ-none" : null}>
+          <div className={isAuth ? "displ-none" : null}>
+            {console.log('Консоль ' + isAuth)}
             <div className="colorText">Вход</div>
             <InputComponent className="no-icon" onChange={onChange} value={userInput} ref={userRef}
                             placeholder="Искать"  /> 
@@ -82,15 +83,15 @@ function App() {
             <InputComponent className="no-icon"  placeholder="Искать" name="myinput" onChange={onChange}  />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}    
             <ButtonComponent name='Искать' />
           </form>
-
+          
         </div>
         <div className="el-flex-s"></div>
       </div>
 
-      
       <FilmListComponent>
         {films.map(el => (
           <FilmItemComponent 
+
             title={el.title}
             poster={el.poster}
             rating={el.rating}
@@ -98,10 +99,8 @@ function App() {
 
            />
         ))}
-      </FilmListComponent>
-      
+      </FilmListComponent>     
     </div>
-    
   );
 }
 

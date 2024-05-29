@@ -1,5 +1,5 @@
 export const INITIAL_STATE = {
-    isAuth: true,
+    isAuth: false,
     user: '',
 }
 
@@ -7,7 +7,7 @@ export const INITIAL_STATE = {
 export function changeUserState(state, action){
     switch(action.type){
        case 'LOGIN':
-        return {...state, isAuth: false, user: action.payload }
+        return {...state, isAuth: true, user: action.payload }
        case 'LOGOUT':
         return {...state, user: action.payload.user, isAuth: action.payload.isAuth}
    

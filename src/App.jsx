@@ -6,91 +6,81 @@ import HeaderComponent from "./components/Header/Header";
 import InputComponent from "./components/Input/Input";
 import FilmListComponent from "./components/FilmList/FilmList";
 import FilmItemComponent from "./components/FilmItem/FilmItem";
+import { INITIAL_STATE, changeUserState } from './reducer_user_state';
+import { useEffect, useReducer, useState, useRef} from 'react';
+import films from './films';
+
 
 
 function App() {
-    const sizeClass = [
-      {
-        small: 'szSmall',
-        medium: 'szMedium',
-        big: 'szBig'
-      }
-    ]
+  
+  const [userState, dispatchUserState] = useReducer(changeUserState, INITIAL_STATE);
+  const { user, isAuth } = userState;
+  const [userInput, setInputUser] = useState('');
 
-    const viewButton = [
-      {
-        login: 'Войти в профиль',
-        search: 'Искать',
-        
+  const userRef = useRef();
 
-      }
-    ]
+  useEffect(() => {
+   let userFromLocalS = JSON.parse(localStorage.getItem("data"));
+    if (userFromLocalS) {
+       dispatchUserState({type: 'LOGIN', payload: userFromLocalS});
+    }
+  }, []);
 
-    const films = [
-      {
-        title: 'Black Widow',
-        poster: '/img/poster1.png',
-        rating: 324,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Friends',
-        poster: '/img/poster2.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Loki',
-        poster: '/img/poster3.png',
-        rating: 235,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'How I Met Your Mother',
-        poster: '/img/poster4.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Money Heist',
-        poster: '/img/poster5.png',
-        rating: 8125,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Friends',
-        poster: '/img/poster6.png',
-        rating: 123,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'The Big Bang Theory',
-        poster: '/img/poster7.png',
-        rating: 12,
-        favorites: 'в избранное'
-      },
-      {
-        title: 'Two And a Half Men',
-        poster: '/img/poster7.png',
-        rating: 456,
-        favorites: 'в избранное'
-      }
-    ]
+  const onChange = (e) => {
+    setInputUser(e.target.value)
+  }
 
+  const onClick = (e) => {  
+    if (!userInput.length) {
+      console.log('Error');
+    return;
+    }else{
+       e.preventDefault();  
+       dispatchUserState({type: 'LOGIN', payload: userInput});
+       localStorage.setItem('data', JSON.stringify(userInput));
+       userRef.current.focus();
+       console.log(userRef.current.value);
+      
+    }    
+  }
+
+  const onLogout = (e) => {
+    e.preventDefault();
+    console.log('onLogout');
+    localStorage.clear();
+    userRef.current.focus();
+    dispatchUserState({type: 'LOGOUT', payload: {isAuth: true, user: ''}});
+    
+    
+  }
+
+  
+
+ 
+ console.log('Сначала здесь!');
+  
   return (
     
     <div>
-      <HeaderComponent />
-
+      <HeaderComponent name={user} isAuth={isAuth} onLogout={onLogout}  />
+       <div className="wrapper-block">
+          <div className={!isAuth ? "displ-none" : null}>
+            <div className="colorText">Вход</div>
+            <InputComponent className="no-icon" onChange={onChange} value={userInput} ref={userRef}
+                            placeholder="Искать"  /> 
+            <ButtonComponent className="noMarginLeft" name='Войти в профиль' onClick={onClick} />
+          </div>
+      </div>
       <div className="flex-box">
         <div className="el-flex-f">
 
           <TitleComponent />
-          <AboutComponent name={sizeClass[0].big} />
+          <AboutComponent name='szBig' />
       
           <form action="" className="ButtonContainer">
-            <InputComponent   />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}
-            <ButtonComponent name={viewButton[0].search} />
+            <InputComponent className="no-icon"  placeholder="Искать" name="myinput" onChange={onChange}  />   {  /* для проверки InputComponent нужно убрать или снять className="no-icon" */}    
+            <ButtonComponent name='Искать' />
           </form>
 
         </div>

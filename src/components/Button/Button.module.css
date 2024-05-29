@@ -19,6 +19,8 @@
 .login{
     color:#fff;
     background: green !important;
+    margin-left:0;
+    margin-top:15px;
     
 }
 .like-btn{

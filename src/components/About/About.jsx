@@ -1,10 +1,10 @@
 
-import './About.css'
+import styles from './About.module.css'
 
 function AboutComponent({name}) {
 
   
-  const p = 'paragraph' + (name ? ' ' + name : '' );
+  const p = `${styles['paragraph']}` + (styles[name] ? ' ' + styles[name] : '' );
   
 
   return (

@@ -1,21 +1,37 @@
 
-import './Input.css'
+import styles from  './Input.module.css';
+import classNames from 'classnames/bind';
+import { forwardRef } from 'react';
+  
 
-function InputComponent({className}) {
-  const fs = 'form-style' + (className ? '' : ' ' + 'plusPadding')
-  const ic = 'input-icon uil uil-at' + (className ? ' ' + className : '');
+const cx = classNames.bind(styles);
 
+const InputComponent = forwardRef(function InputComponent({className, name, placeholder, onChange, value, ...props}, ref) {
+ 
+
+const inputClassName = cx(styles['form-style'],{
+    [styles['plusPadding']] : !styles[className],
+    // [styles['invalid']] : !isAuth
+    
+});
+  // debugger;
+const imgClassName = cx(
+    styles['input-icon'],
+    styles['uil'],
+    styles['uil-at'],
+    className && styles[className],
+);
 
   return (
     
     
-      <div className="form-group">
-        <input type="email" name="logemail" className={fs} placeholder="Your Email" id="logemail" autoComplete="off" />
-        <img className={ic} src="/search.svg" alt="" />
+      <div className={styles['form-group']}>
+        <input type="email" value={value} ref={ref} name={name} className={inputClassName} onChange={onChange} placeholder={placeholder} id="logemail" autoComplete="off" {...props} />
+        <img className={imgClassName} src="/search.svg" alt="" />
       </div>
   
     
   )
-}
+})
 
 export default InputComponent

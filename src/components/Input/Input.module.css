@@ -1,10 +1,11 @@
 
 .form-group{ 
-    position: relative;
+    position: relative !important;
     display: block;
-      margin: 0;
-      padding: 0;
+    margin: 0;
+    padding: 0;
   }
+
   .form-style {
     /* padding: 13px 20px; */
     width:384px;
@@ -33,11 +34,11 @@
   }
   .input-icon {
     position: absolute;
-    top: 10px;
-    left: 3px;
+    top: 20px;
+    left: 17px;
     /* height: 48px;
     width:24px; */
-    padding:12px 16px 12px 16px;
+    /* padding:12px 16px 12px 16px; */
     height: 24px;
     line-height: 48px;
     text-align: left;
@@ -57,6 +58,10 @@
   padding-left: 55px !important;
 }
 
+.invalid{
+  border:1px solid red !important;
+}
+
 /*  END  СТИЛИ МЕНЯЮЩИЕ ТИП КНОПКИ (С И БЕЗ ИКОНКИ) */
 
 
@@ -73,46 +78,46 @@
 
 /* СТИЛИ ДЛЯ PLACEHOLDER */
 
-.form-group input:-ms-input-placeholder  {
+input:-ms-input-placeholder  {
   color: #c4c3ca;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input::-moz-placeholder  {
+input::-moz-placeholder  {
   color: #c4c3ca;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input:-moz-placeholder  {
+input:-moz-placeholder  {
   color: #c4c3ca;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input::-webkit-input-placeholder  {
+input::-webkit-input-placeholder  {
   color: #c4c3ca;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input:focus:-ms-input-placeholder  {
+input:focus:-ms-input-placeholder  {
   opacity: 0;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input:focus::-moz-placeholder  {
+input:focus::-moz-placeholder  {
   opacity: 0;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input:focus:-moz-placeholder  {
+input:focus:-moz-placeholder  {
   opacity: 0;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-.form-group input:focus::-webkit-input-placeholder  {
+input:focus::-webkit-input-placeholder  {
   opacity: 0;
   -webkit-transition: all 200ms linear;
     transition: all 200ms linear;

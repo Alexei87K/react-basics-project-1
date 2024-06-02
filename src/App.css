@@ -64,3 +64,20 @@
 *{
   box-sizing: border-box;
 }
+
+
+.wrapper-block{
+  max-width:1440px;
+  padding:0 120px;
+}
+.colorText{
+  color:#fff;
+  margin:15px 0;
+  font-size:36px;
+  font-weight: 700;
+}
+
+
+.displ-none{
+  display:none;
+}

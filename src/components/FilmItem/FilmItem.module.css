@@ -10,26 +10,30 @@
     /* Ширина */
     margin-bottom:20px;
 }
+
+
 .rel-block{
-    position:relative;
+  position:relative;
 }
 .rel-block img{
-  max-width:250px;
+max-width:250px;
 }
 .abs-block{
-    position:absolute;
-    top:5px;
-    left:5px;
-    display:flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.65);
-    border-radius:10px;
-    padding:3px 8px;
+  position:absolute;
+  top:5px;
+  left:5px;
+  display:flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius:10px;
+  padding:3px 8px;
 }
 .abs-block span{
-   padding-left:5px;
-   color:rgba(255, 173, 73, 1);
+ padding-left:5px;
+ color:rgba(255, 173, 73, 1);
 }
+
+
 .poster-title{
     font-family: Poppins;
     font-weight: 400;
@@ -44,8 +48,4 @@
 .flexBlock img{
     width: 18px;
     height: 18px;
-}
-.flexBlock span{
-  padding-left:7px;
-  color:#7B6EF6;
 }

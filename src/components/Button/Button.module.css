@@ -4,7 +4,7 @@
     margin-top:25px;
 }
 
-.ButtonContainer .button{
+.button{
     /* width:119px; */
     
     /* height: 56px; */
@@ -19,5 +19,13 @@
 .login{
     color:#fff;
     background: green !important;
+    margin-left:0;
+    margin-top:15px;
     
 }
+.like-btn{
+    padding-left:7px;
+    color:#7B6EF6;
+    background:transparent;
+}
+
